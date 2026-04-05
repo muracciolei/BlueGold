@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLUE GOLD: A Global Coastal Infrastructure for Green Hydrogen, Freshwater Production, and Renewable Energy Storage</title>
+    <style>
+        :root {
+            --deep-ocean: #0a1628;
+            --ocean-blue: #0d2137;
+            --cyan-accent: #00d4ff;
+            --gold-accent: #d4a853;
+            --white: #ffffff;
+            --light-cyan: #e0f7ff;
+            --text-gray: #8ba3b9;
+            --gradient-ocean: linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #0a3040 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: var(--deep-ocean);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+
+        /* Navigation Index */
+        .nav-index {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(10, 22, 40, 0.95);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 0.5rem 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-index-list {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-index-item {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-index-item:hover, .nav-index-item.active {
+            color: var(--cyan-accent);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-index-item span { color: var(--gold-accent); margin-right: 2px; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: var(--gradient-ocean);
+            overflow: hidden;
+        }
+
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-content { position: relative; z-index: 10; text-align: center; padding: 2rem; max-width: 1200px; }
+
+        .hero-title {
+            font-size: clamp(3rem, 12vw, 10rem);
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            margin-right: -0.4em;
+            background: linear-gradient(180deg, var(--white) 0%, var(--cyan-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.5)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--cyan-accent);
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            color: var(--text-gray);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-gray);
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--cyan-accent);
+            border-bottom: 2px solid var(--cyan-accent);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* SVG Animations */
+        .wave { animation: wave 8s ease-in-out infinite; }
+        .wave-2 { animation: wave 6s ease-in-out infinite reverse; animation-delay: -2s; }
+        @keyframes wave {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-25px) translateY(-5px); }
+            50% { transform: translateX(-50px) translateY(0); }
+            75% { transform: translateX(-25px) translateY(5px); }
+        }
+
+        .turbine-blades { transform-origin: 50% 85%; animation: rotate 4s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .sun-ray { transform-origin: center; animation: pulse 3s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+        /* Section Styles */
+        .section { padding: 4rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .abstract-content {
+            background: rgba(13, 33, 55, 0.5);
+            border-left: 3px solid var(--cyan-accent);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .abstract-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--light-cyan);
+        }
+
+        .key-outputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .output-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .output-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--cyan-accent);
+            transform: translateY(-3px);
+        }
+
+        .output-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .output-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-gray); }
+
+        .estimates {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+        }
+
+        .estimates-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .estimate-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+            font-size: 0.85rem;
+        }
+
+        .estimate-item:last-child { border-bottom: none; }
+        .estimate-value { color: var(--cyan-accent); font-weight: 500; }
+
+        /* Problem Grid */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .problem-card {
+            background: rgba(13, 33, 55, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover { border-color: var(--cyan-accent); transform: translateY(-2px); }
+        .problem-card-title { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-accent); margin-bottom: 0.5rem; }
+        .stat-counter { font-size: 1.5rem; font-weight: 300; color: var(--cyan-accent); display: inline-block; }
+        .problem-card-content { font-size: 0.85rem; color: var(--light-cyan); line-height: 1.6; }
+
+        /* Flow Diagrams */
+        .concept-diagram {
+            background: rgba(13, 33, 55, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+            min-width: 500px;
+        }
+
+        .flow-step {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 0.75rem 1rem;
+            text-align: center;
+            min-width: 90px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover { background: rgba(0, 212, 255, 0.2); border-color: var(--cyan-accent); }
+        .flow-step-icon { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .flow-step-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-gray); }
+        .flow-arrow { color: var(--cyan-accent); font-size: 1.2rem; opacity: 0.6; }
+
+        .inputs-outputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .io-column {
+            background: rgba(13, 33, 55, 0.3);
+            padding: 1rem;
+            border-top: 2px solid var(--cyan-accent);
+        }
+
+        .io-title { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-accent); margin-bottom: 0.75rem; }
+        .io-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(0, 212, 255, 0.1); font-size: 0.85rem; color: var(--light-cyan); }
+        .io-item:last-child { border-bottom: none; }
+        .io-icon { font-size: 1rem; }
+
+        /* Energy Grid */
+        .energy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .energy-card {
+            background: rgba(13, 33, 55, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .energy-card:hover { border-color: var(--gold-accent); transform: translateY(-3px); }
+        .energy-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .energy-title { font-size: 1rem; font-weight: 500; color: var(--white); margin-bottom: 0.75rem; }
+        .energy-description { font-size: 0.85rem; color: var(--light-cyan); line-height: 1.6; }
+        .energy-features { margin-top: 0.75rem; list-style: none; }
+        .energy-features li { font-size: 0.8rem; color: var(--text-gray); padding: 0.3rem 0; padding-left: 1rem; position: relative; }
+        .energy-features li::before { content: "→"; position: absolute; left: 0; color: var(--cyan-accent); }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--cyan-accent);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-box p { color: var(--light-cyan); line-height: 1.7; font-size: 0.9rem; }
+
+        /* Tech Specs */
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .spec-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .spec-value { font-size: 1.5rem; font-weight: 300; color: var(--cyan-accent); margin-bottom: 0.25rem; }
+        .spec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-gray); }
+
+        /* Calculation Box */
+        .calculation-box {
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .calculation-title { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-accent); margin-bottom: 0.75rem; }
+        .calculation-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(212, 168, 83, 0.2); font-size: 0.85rem; }
+        .calculation-row:last-child { border-bottom: none; }
+        .calc-label { color: var(--light-cyan); }
+        .calc-value { color: var(--white); font-weight: 500; }
+        .calc-formula { color: var(--cyan-accent); font-style: italic; }
+
+        /* Distribution Diagram */
+        .distribution-diagram {
+            background: rgba(13, 33, 55, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .distribution-flow { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .dist-node { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); padding: 0.75rem 1rem; min-width: 90px; }
+        .dist-icon { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .dist-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-gray); }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .impact-card {
+            background: rgba(13, 33, 55, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            padding: 1rem;
+        }
+
+        .impact-title { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+        .impact-text { font-size: 0.8rem; color: var(--light-cyan); line-height: 1.6; }
+
+        /* Resource Flow */
+        .resource-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .resource-column { background: rgba(13, 33, 55, 0.3); padding: 1rem; }
+        .resource-title { font-size: 0.9rem; font-weight: 500; color: var(--gold-accent); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(212, 168, 83, 0.3); }
+        .resource-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(0, 212, 255, 0.1); }
+        .resource-item:last-child { border-bottom: none; }
+        .resource-icon { font-size: 1.1rem; min-width: 25px; }
+        .resource-content h4 { font-size: 0.85rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+        .resource-content p { font-size: 0.75rem; color: var(--text-gray); line-height: 1.5; }
+
+        /* Strategy Comparison */
+        .strategy-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .strategy-card { background: rgba(13, 33, 55, 0.5); border: 1px solid rgba(0, 212, 255, 0.2); padding: 1rem; }
+        .strategy-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 212, 255, 0.2); }
+        .strategy-icon { font-size: 1.2rem; }
+        .strategy-name { font-size: 0.85rem; font-weight: 500; color: var(--white); }
+        .strategy-status { font-size: 0.65rem; padding: 0.15rem 0.35rem; border-radius: 3px; margin-left: auto; }
+        .status-proven { background: rgba(0, 212, 255, 0.2); color: var(--cyan-accent); }
+        .status-emerging { background: rgba(212, 168, 83, 0.2); color: var(--gold-accent); }
+        .strategy-items { list-style: none; }
+        .strategy-items li { font-size: 0.75rem; color: var(--light-cyan); padding: 0.25rem 0; padding-left: 0.75rem; position: relative; }
+        .strategy-items li::before { content: "•"; position: absolute; left: 0; color: var(--cyan-accent); }
+
+        /* Impact Assessment */
+        .impact-assessment {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .impact-column { background: rgba(13, 33, 55, 0.3); padding: 1rem; }
+        .impact-column-title { font-size: 0.9rem; font-weight: 500; color: var(--gold-accent); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(212, 168, 83, 0.3); }
+        .impact-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(0, 212, 255, 0.1); }
+        .impact-item:last-child { border-bottom: none; }
+        .impact-item h4 { font-size: 0.85rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+        .impact-item p { font-size: 0.75rem; color: var(--text-gray); line-height: 1.5; }
+        .mitigation-list { list-style: none; margin-top: 0.5rem; }
+        .mitigation-list li { font-size: 0.7rem; color: var(--light-cyan); padding: 0.15rem 0; padding-left: 0.75rem; position: relative; }
+        .mitigation-list li::before { content: "✓"; position: absolute; left: 0; color: var(--cyan-accent); }
+
+        /* Deployment List */
+        .deployment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .region-card {
+            background: rgba(13, 33, 55, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .region-card:hover { border-color: var(--gold-accent); transform: translateY(-2px); }
+        .region-name { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+        .region-details { font-size: 0.75rem; color: var(--light-cyan); line-height: 1.6; }
+        .region-priority { display: inline-block; font-size: 0.65rem; padding: 0.15rem 0.35rem; border-radius: 3px; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .priority-high { background: rgba(212, 168, 83, 0.3); color: var(--gold-accent); }
+        .priority-medium { background: rgba(0, 212, 255, 0.2); color: var(--cyan-accent); }
+
+        /* Cost Breakdown */
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cost-card { background: rgba(13, 33, 55, 0.5); border: 1px solid rgba(212, 168, 83, 0.2); padding: 1rem; }
+        .cost-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gold-accent); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(212, 168, 83, 0.3); }
+        .cost-items { list-style: none; }
+        .cost-item { display: flex; justify-content: space-between; padding: 0.3rem 0; font-size: 0.8rem; }
+        .cost-item-name { color: var(--light-cyan); }
+        .cost-item-value { color: var(--white); }
+
+        .economics-flow {
+            background: rgba(13, 33, 55, 0.4);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .flow-title { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 1rem; text-align: center; }
+        .revenue-streams { display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .revenue-item { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); padding: 0.5rem 1rem; text-align: center; }
+        .revenue-icon { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .revenue-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-gray); }
+
+        /* Tech Timeline */
+        .tech-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-card {
+            background: rgba(13, 33, 55, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before { content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--cyan-accent); }
+        .tech-era { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan-accent); margin-bottom: 0.25rem; }
+        .tech-title { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+        .tech-description { font-size: 0.75rem; color: var(--light-cyan); line-height: 1.5; }
+
+        /* Conclusion */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(212, 168, 83, 0.1) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .conclusion-text { font-size: 1rem; line-height: 1.9; color: var(--white); text-align: center; margin-bottom: 1rem; }
+        .conclusion-text:last-child { margin-bottom: 0; }
+        .conclusion-text strong { color: var(--cyan-accent); }
+
+        /* References */
+        .references-list { list-style: none; counter-reset: ref-counter; }
+        .reference-item { position: relative; padding: 0.75rem 0 0.75rem 2.5rem; border-bottom: 1px solid rgba(0, 212, 255, 0.1); font-size: 0.8rem; color: var(--light-cyan); line-height: 1.5; }
+        .reference-item:last-child { border-bottom: none; }
+        .reference-item::before { counter-increment: ref-counter; content: "[" counter(ref-counter) "]"; position: absolute; left: 0; color: var(--gold-accent); font-weight: 500; }
+        .reference-author { color: var(--text-gray); }
+        .reference-title { font-style: italic; }
+
+        /* Footer */
+        .site-footer {
+            background: rgba(10, 22, 40, 0.9);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-title { font-size: 1rem; font-weight: 300; letter-spacing: 0.25em; color: var(--cyan-accent); margin-bottom: 0.5rem; }
+        .footer-text { font-size: 0.75rem; color: var(--text-gray); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding-top: 45px; }
+            .nav-index { padding: 0.4rem 0.5rem; }
+            .nav-index-item { font-size: 0.6rem; padding: 0.15rem 0.25rem; }
+            .hero-title { letter-spacing: 0.15em; margin-right: -0.15em; }
+            .section { padding: 3rem 1rem; }
+            .flow-diagram { flex-direction: column; align-items: center; min-width: auto; }
+            .flow-arrow { transform: rotate(90deg); }
+            .impact-assessment { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Index -->
+    <nav class="nav-index">
+        <div class="nav-index-list">
+            <a href="#abstract" class="nav-index-item"><span>01</span> Abstract</a>
+            <a href="#problem-context" class="nav-index-item"><span>02</span> Problem</a>
+            <a href="#core-concept" class="nav-index-item"><span>03</span> Concept</a>
+            <a href="#energy-generation" class="nav-index-item"><span>04</span> Energy</a>
+            <a href="#hydrogen-production" class="nav-index-item"><span>05</span> Hydrogen</a>
+            <a href="#freshwater-production" class="nav-index-item"><span>06</span> Freshwater</a>
+            <a href="#oxygen-minerals" class="nav-index-item"><span>07</span> Oxygen</a>
+            <a href="#rare-earth-strategy" class="nav-index-item"><span>08</span> Rare Earth</a>
+            <a href="#environmental-considerations" class="nav-index-item"><span>09</span> Environ.</a>
+            <a href="#global-deployment" class="nav-index-item"><span>10</span> Deploy</a>
+            <a href="#economics" class="nav-index-item"><span>11</span> Economics</a>
+            <a href="#future-tech" class="nav-index-item"><span>12</span> Future</a>
+            <a href="#conclusion" class="nav-index-item"><span>13</span> Conclusion</a>
+            <a href="#references" class="nav-index-item"><span>14</span> Refs</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <svg class="hero-bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#0a3040;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0a1628;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <rect width="1200" height="800" fill="url(#oceanGrad)"/>
+            <g transform="translate(900, 100)">
+                <circle cx="0" cy="0" r="60" fill="url(#sunGrad)" opacity="0.8"/>
+                <g class="sun-ray">
+                    <line x1="0" y1="-80" x2="0" y2="-120" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                    <line x1="56" y1="-56" x2="85" y2="-85" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                    <line x1="80" y1="0" x2="120" y2="0" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                    <line x1="56" y1="56" x2="85" y2="85" stroke="#ffd700" stroke-width="2" opacity="0.5"/>
+                </g>
+            </g>
+            <g transform="translate(150, 180)">
+                <line x1="0" y1="0" x2="0" y2="120" stroke="#4a6fa5" stroke-width="4"/>
+                <g class="turbine-blades">
+                    <line x1="0" y1="0" x2="0" y2="-50" stroke="#e0f7ff" stroke-width="3"/>
+                    <line x1="0" y1="0" x2="43" y2="25" stroke="#e0f7ff" stroke-width="3"/>
+                    <line x1="0" y1="0" x2="-43" y2="25" stroke="#e0f7ff" stroke-width="3"/>
+                </g>
+                <circle cx="0" cy="0" r="5" fill="#00d4ff"/>
+            </g>
+            <g transform="translate(300, 200)">
+                <line x1="0" y1="0" x2="0" y2="100" stroke="#4a6fa5" stroke-width="3"/>
+                <g class="turbine-blades" style="animation-delay: -1s;">
+                    <line x1="0" y1="0" x2="0" y2="-40" stroke="#e0f7ff" stroke-width="2"/>
+                    <line x1="0" y1="0" x2="35" y2="20" stroke="#e0f7ff" stroke-width="2"/>
+                    <line x1="0" y1="0" x2="-35" y2="20" stroke="#e0f7ff" stroke-width="2"/>
+                </g>
+                <circle cx="0" cy="0" r="4" fill="#00d4ff"/>
+            </g>
+            <path class="wave" d="M0 500 Q150 450 300 500 T600 500 T900 500 T1200 500 V800 H0 Z" fill="#00d4ff" opacity="0.1"/>
+            <path class="wave-2" d="M0 550 Q150 500 300 550 T600 550 T900 550 T1200 550 V800 H0 Z" fill="#00d4ff" opacity="0.15"/>
+            <path class="wave" d="M0 600 Q150 560 300 600 T600 600 T900 600 T1200 600 V800 H0 Z" fill="#00d4ff" opacity="0.2"/>
+            <g transform="translate(600, 450)">
+                <rect x="0" y="0" width="40" height="60" fill="#1a3a5c" stroke="#00d4ff" stroke-width="1" opacity="0.8"/>
+                <line x1="0" y1="20" x2="40" y2="20" stroke="#00d4ff" stroke-width="0.5" opacity="0.5"/>
+                <line x1="0" y1="40" x2="40" y2="40" stroke="#00d4ff" stroke-width="0.5" opacity="0.5"/>
+                <line x1="20" y1="0" x2="20" y2="60" stroke="#00d4ff" stroke-width="0.5" opacity="0.5"/>
+            </g>
+            <g transform="translate(660, 470)">
+                <rect x="0" y="0" width="30" height="45" fill="#1a3a5c" stroke="#00d4ff" stroke-width="1" opacity="0.7"/>
+            </g>
+            <g transform="translate(1000, 400)">
+                <text x="0" y="0" font-size="80" fill="#d4a853" opacity="0.6" font-weight="300">H₂</text>
+                <circle cx="0" cy="0" r="50" fill="none" stroke="#d4a853" stroke-width="1" opacity="0.3"/>
+            </g>
+            <circle cx="200" cy="300" r="2" fill="#00d4ff" opacity="0.5"><animate attributeName="cy" values="300;280;300" dur="4s" repeatCount="indefinite"/></circle>
+            <circle cx="500" cy="350" r="1.5" fill="#00d4ff" opacity="0.4"><animate attributeName="cy" values="350;330;350" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="800" cy="280" r="2" fill="#d4a853" opacity="0.4"><animate attributeName="cy" values="280;260;280" dur="5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="hero-content">
+            <h1 class="hero-title">BLUE GOLD</h1>
+            <p class="hero-subtitle">A Global Coastal Infrastructure for Green Hydrogen, Freshwater Production, and Renewable Energy Storage</p>
+            <p class="hero-tagline">"Transforming Seawater into Energy, Water, and Civilization Infrastructure"</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- 01 Abstract -->
+    <section class="section" id="abstract">
+        <span class="section-label">01 — Abstract</span>
+        <h2 class="section-title">Executive Summary</h2>
+        <div class="abstract-content">
+            <p class="abstract-text">The global transition toward sustainable energy systems faces two interconnected challenges: the inherent intermittency of renewable energy sources and the mounting crisis of freshwater scarcity. As wind and solar power expand to meet climate targets, the absence of large-scale energy storage creates grid instability. Simultaneously, accelerating freshwater demand from agricultural expansion, urbanization, and population growth threatens water security across densely populated coastal regions.</p>
+            <br>
+            <p class="abstract-text">This paper presents <strong>Blue Gold</strong>, a conceptual-technical framework for a distributed coastal infrastructure that addresses both challenges simultaneously. By deploying large-scale integrated facilities at strategic coastal locations worldwide, Blue Gold transforms abundant seawater into three critical resources: green hydrogen as a scalable energy carrier and storage medium, fresh water for municipal and agricultural use, and oxygen for industrial and medical applications. The system operates entirely on renewable energy, ensuring complete decarbonization.</p>
+            <br>
+            <p class="abstract-text">Each integrated plant functions as a multi-output industrial ecosystem, producing hydrogen at scale while simultaneously addressing regional water scarcity. This dual-output approach creates economic resilience through diversified revenue streams and provides strategic advantages for coastal nations seeking energy independence and water security.</p>
+        </div>
+        <div class="key-outputs">
+            <div class="output-card"><div class="output-icon">⚡</div><div class="output-label">Green Hydrogen</div></div>
+            <div class="output-card"><div class="output-icon">💧</div><div class="output-label">Freshwater</div></div>
+            <div class="output-card"><div class="output-icon">🫧</div><div class="output-label">Oxygen</div></div>
+            <div class="output-card"><div class="output-icon">🧂</div><div class="output-label">Mineral Salts</div></div>
+        </div>
+        <div class="estimates">
+            <div class="estimates-title">Approximate Conceptual Outputs (per 1000 MW facility)</div>
+            <div class="estimate-item"><span>Hydrogen Production</span><span class="estimate-value">~200 tonnes/day</span></div>
+            <div class="estimate-item"><span>Freshwater Output</span><span class="estimate-value">~50,000 m³/day</span></div>
+            <div class="estimate-item"><span>Oxygen Generation</span><span class="estimate-value">~1,800 tonnes/day</span></div>
+            <div class="estimate-item"><span>Salt/Minerals</span><span class="estimate-value">~3,000 tonnes/day</span></div>
+        </div>
+    </section>
+
+    <!-- 02 Problem Context -->
+    <section class="section" id="problem-context">
+        <span class="section-label">02 — Global Problem Context</span>
+        <h2 class="section-title">The Interconnected Crisis</h2>
+        <p class="abstract-text">The global energy system stands at a pivotal moment where three fundamental challenges converge: the imperative to decarbonize energy production, the need for large-scale energy storage to manage renewable intermittency, and the mounting pressure on freshwater resources from competing demands.</p>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="36">0</span> GT</div>
+                <div class="problem-card-content"><strong>Global CO₂ Emissions</strong><br>Annual carbon dioxide emissions from fossil fuel combustion. The energy sector remains the largest contributor to climate change.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="82">0</span>%</div>
+                <div class="problem-card-content"><strong>Fossil Fuel Dependence</strong><br>Share of primary energy still derived from fossil hydrocarbons. Creates climate risk and geopolitical vulnerability.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="4">0</span> trillion</div>
+                <div class="problem-card-content"><strong>Annual Energy Storage Gap</strong><br>The difference between available renewable generation and usable storage capacity.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="2">0</span> billion</div>
+                <div class="problem-card-content"><strong>People Facing Water Scarcity</strong><br>Population experiencing water stress due to supply limitations or inadequate infrastructure.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="70">0</span>%</div>
+                <div class="problem-card-content"><strong>Freshwater for Agriculture</strong><br>Percentage of global freshwater withdrawals consumed by agricultural operations.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-title"><span class="stat-counter" data-target="500">0</span> Mt</div>
+                <div class="problem-card-content"><strong>Hydrogen Demand by 2050</strong><br>Projected global hydrogen demand in million tonnes annually for decarbonization.</div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p>The convergence of these challenges creates an opportunity for integrated solutions. Rather than addressing energy, water, and storage as separate problems, Blue Gold proposes treating them as interconnected outputs of a unified coastal industrial system.</p>
+        </div>
+    </section>
+
+    <!-- 03 Core Concept -->
+    <section class="section" id="core-concept">
+        <span class="section-label">03 — Core Blue Gold Concept</span>
+        <h2 class="section-title">Integrated Coastal Energy-Water Infrastructure</h2>
+        <p class="abstract-text">The Blue Gold conceptual framework proposes deploying a global network of large-scale coastal facilities that transform seawater into multiple valuable outputs using exclusively renewable energy. Each facility combines desalination, electrolysis, and renewable energy generation in a closed-loop configuration.</p>
+        <div class="concept-diagram">
+            <div class="flow-diagram">
+                <div class="flow-step"><div class="flow-step-icon">🌊</div><div class="flow-step-label">Seawater Intake</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step"><div class="flow-step-icon">🔄</div><div class="flow-step-label">Desalination</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step"><div class="flow-step-icon">⚡</div><div class="flow-step-label">Electrolysis</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step"><div class="flow-step-icon">🔋</div><div class="flow-step-label">Storage</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step"><div class="flow-step-icon">📦</div><div class="flow-step-label">Distribution</div></div>
+            </div>
+        </div>
+        <div class="inputs-outputs">
+            <div class="io-column">
+                <h3 class="io-title">Inputs</h3>
+                <div class="io-item"><span class="io-icon">🌊</span><span>Seawater (unlimited supply)</span></div>
+                <div class="io-item"><span class="io-icon">☀️</span><span>Solar Energy (photovoltaic)</span></div>
+                <div class="io-item"><span class="io-icon">💨</span><span>Wind Energy (offshore/onshore)</span></div>
+                <div class="io-item"><span class="io-icon">🌊</span><span>Ocean Hydraulic Flow</span></div>
+            </div>
+            <div class="io-column">
+                <h3 class="io-title">Outputs</h3>
+                <div class="io-item"><span class="io-icon">⚡</span><span>Green Hydrogen (H₂)</span></div>
+                <div class="io-item"><span class="io-icon">💧</span><span>Freshwater (potable)</span></div>
+                <div class="io-item"><span class="io-icon">🫧</span><span>Oxygen (O₂)</span></div>
+                <div class="io-item"><span class="io-icon">🧂</span><span>Mineral Salts (NaCl, Mg, K)</span></div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Key Innovation:</strong> Unlike conventional plants that produce a single primary output, Blue Gold facilities generate four valuable products simultaneously. Revenue diversification reduces investment risk while the inherent flexibility allows facilities to respond to market conditions.</p>
+        </div>
+    </section>
+
+    <!-- 04 Energy Generation -->
+    <section class="section" id="energy-generation">
+        <span class="section-label">04 — Energy Generation Ecosystem</span>
+        <h2 class="section-title">Integrated Renewable Sources</h2>
+        <p class="abstract-text">Blue Gold facilities draw power from a diversified portfolio of renewable sources, strategically integrated to maximize capacity factors and minimize grid dependence. The energy ecosystem combines solar farms, wind installations, and ocean-based generation optimized for coastal environments.</p>
+        <div class="energy-grid">
+            <div class="energy-card">
+                <div class="energy-icon">☀️</div>
+                <h3 class="energy-title">Solar Farms</h3>
+                <p class="energy-description">Large-scale photovoltaic installations utilizing high-efficiency silicon cells and emerging perovskite technologies. Floating solar platforms extend generation onto water surfaces.</p>
+                <ul class="energy-features">
+                    <li>Silicon photovoltaic systems</li>
+                    <li>Perovskite solar technologies</li>
+                    <li>Floating solar platforms</li>
+                    <li>Dual-axis tracking systems</li>
+                </ul>
+            </div>
+            <div class="energy-card">
+                <div class="energy-icon">💨</div>
+                <h3 class="energy-title">Wind Farms</h3>
+                <p class="energy-description">Offshore and nearshore wind turbines positioned to capture consistent marine wind patterns. Electrically excited generators eliminate rare earth dependencies.</p>
+                <ul class="energy-features">
+                    <li>Offshore wind turbines</li>
+                    <li>Electrically excited generators</li>
+                    <li>No permanent magnets</li>
+                    <li>High-capacity factor sites</li>
+                </ul>
+            </div>
+            <div class="energy-card">
+                <div class="energy-icon">🌊</div>
+                <h3 class="energy-title">Hydraulic Recovery</h3>
+                <p class="energy-description">Energy capture systems that recover power from water movement throughout facility operation—from intake through brine discharge.</p>
+                <ul class="energy-features">
+                    <li>Intake flow generation</li>
+                    <li>Brine discharge turbines</li>
+                    <li>Pressure recovery systems</li>
+                    <li>Closed-loop water circuits</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Energy Integration Strategy:</strong> The renewable energy ecosystem operates as a unified system. Surplus solar during midday offsets lower wind performance, while hydraulic recovery provides baseline power independent of weather conditions.</p>
+        </div>
+    </section>
+
+    <!-- 05 Hydrogen Production -->
+    <section class="section" id="hydrogen-production">
+        <span class="section-label">05 — Hydrogen Production Model</span>
+        <h2 class="section-title">Green Hydrogen via Electrolysis</h2>
+        <p class="abstract-text">The hydrogen production core utilizes water electrolysis—the process of splitting water molecules into hydrogen and oxygen using electrical current. When powered by renewable electricity, this produces true "green hydrogen" with zero carbon emissions.</p>
+        <div class="tech-specs">
+            <div class="spec-card"><div class="spec-value">50-55</div><div class="spec-label">kWh/kg H₂</div></div>
+            <div class="spec-card"><div class="spec-value">9</div><div class="spec-label">L H₂O/kg H₂</div></div>
+            <div class="spec-card"><div class="spec-value">99.99%</div><div class="spec-label">Purity</div></div>
+            <div class="spec-card"><div class="spec-value">70-80%</div><div class="spec-label">Efficiency</div></div>
+        </div>
+        <div class="calculation-box">
+            <div class="calculation-title">Engineering Scale Example: 1000 MW Facility</div>
+            <div class="calculation-row"><span class="calc-label">Renewable Capacity</span><span class="calc-value">1,000 MW</span></div>
+            <div class="calculation-row"><span class="calc-label">Annual Operating Hours</span><span class="calc-value">~6,500 hours (74% capacity factor)</span></div>
+            <div class="calculation-row"><span class="calc-label">Annual Energy Available</span><span class="calc-value">6,500 MWh</span></div>
+            <div class="calculation-row"><span class="calc-label">Energy per kg H₂</span><span class="calc-value calc-formula">55 kWh/kg</span></div>
+            <div class="calculation-row"><span class="calc-label">Daily Hydrogen Output</span><span class="calc-value">~200 tonnes/day</span></div>
+            <div class="calculation-row"><span class="calc-label">Daily Water Consumption</span><span class="calc-value">~1,800 m³/day</span></div>
+            <div class="calculation-row"><span class="calc-label">Daily Oxygen Generation</span><span class="calc-value">~1,800 tonnes/day</span></div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Electrolyzer Technology:</strong> Blue Gold facilities utilize alkaline electrolyzers for large-scale production due to their maturity, proven reliability, and lower capital costs. Future facilities may incorporate anion exchange membrane (AEM) electrolyzers as the technology matures.</p>
+        </div>
+    </section>
+
+    <!-- 06 Freshwater Production -->
+    <section class="section" id="freshwater-production">
+        <span class="section-label">06 — Freshwater Production Impact</span>
+        <h2 class="section-title">Dual-Use Water Security</h2>
+        <p class="abstract-text">The desalination component addresses one of humanity's most pressing challenges—access to fresh water. Each facility produces approximately 50,000 cubic meters of fresh water daily through reverse osmosis, providing reliable supply for municipal, agricultural, and industrial use.</p>
+        <div class="distribution-diagram">
+            <div class="distribution-flow">
+                <div class="dist-node"><div class="dist-icon">🏭</div><div class="dist-label">Blue Gold Plant</div></div>
+                <div class="flow-arrow" style="color: var(--cyan-accent);">→</div>
+                <div class="dist-node"><div class="dist-icon">🏙️</div><div class="dist-label">Cities</div></div>
+                <div class="flow-arrow" style="color: var(--cyan-accent);">→</div>
+                <div class="dist-node"><div class="dist-icon">🌾</div><div class="dist-label">Farms</div></div>
+                <div class="flow-arrow" style="color: var(--cyan-accent);">→</div>
+                <div class="dist-node"><div class="dist-icon">🏭</div><div class="dist-label">Industry</div></div>
+            </div>
+        </div>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h3 class="impact-title">Urban Water Supply</h3>
+                <p class="impact-text">Blue Gold facilities provide coastal cities with a reliable, climate-resilient water source independent of rainfall. The 50,000 m³ daily output can supply a city of 250,000 people.</p>
+            </div>
+            <div class="impact-card">
+                <h3 class="impact-title">Agricultural Irrigation</h3>
+                <p class="impact-text">Desalinated water enables irrigation in arid coastal regions where traditional freshwater sources are insufficient, supporting food production in climate-stressed areas.</p>
+            </div>
+            <div class="impact-card">
+                <h3 class="impact-title">Desert Agriculture</h3>
+                <p class="impact-text">Access to unlimited seawater combined with renewable-powered desalination opens previously unproductive coastal desert regions for agricultural development.</p>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Resource Efficiency:</strong> The integration of desalination with hydrogen production creates significant efficiencies. The concentrated brine from desalination becomes a raw material for mineral extraction, minimizing waste.</p>
+        </div>
+    </section>
+
+    <!-- 07 Oxygen and Minerals -->
+    <section class="section" id="oxygen-minerals">
+        <span class="section-label">07 — Oxygen and Mineral Resource Utilization</span>
+        <h2 class="section-title">Secondary Output Valorization</h2>
+        <p class="abstract-text">While hydrogen and freshwater represent the primary outputs, the production processes generate additional valuable materials. Electrolysis produces high-purity oxygen as a byproduct, while desalination generates concentrated brine containing dissolved minerals.</p>
+        <div class="resource-flow">
+            <div class="resource-column">
+                <h3 class="resource-title">Oxygen Applications</h3>
+                <div class="resource-item">
+                    <div class="resource-icon">🏥</div>
+                    <div class="resource-content">
+                        <h4>Medical Oxygen</h4>
+                        <p>High-purity oxygen for hospital respiratory treatments, emergency care, and surgical procedures.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🏭</div>
+                    <div class="resource-content">
+                        <h4>Industrial Processes</h4>
+                        <p>Oxygen for steel manufacturing, chemical production, and combustion enhancement.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🐟</div>
+                    <div class="resource-content">
+                        <h4>Aquaculture</h4>
+                        <p>Oxygenation for fish farms and shellfish operations, improving yields and fish health.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-column">
+                <h3 class="resource-title">Mineral Recovery</h3>
+                <div class="resource-item">
+                    <div class="resource-icon">🧂</div>
+                    <div class="resource-content">
+                        <h4>Sodium Chloride (Salt)</h4>
+                        <p>High-purity sodium chloride for chemical production and food processing.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🔋</div>
+                    <div class="resource-content">
+                        <h4>Sodium Compounds</h4>
+                        <p>Sodium hydroxide and sodium carbonate for industrial processes and sodium-ion batteries.</p>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">💎</div>
+                    <div class="resource-content">
+                        <h4>Magnesium and Potassium</h4>
+                        <p>Recovery of magnesium for lightweight alloys and potassium for fertilizers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Zero-Waste Philosophy:</strong> Blue Gold facilities are designed on a zero-waste principle where every output has value. This approach transforms waste streams into revenue sources.</p>
+        </div>
+    </section>
+
+    <!-- 08 Rare Earth Strategy -->
+    <section class="section" id="rare-earth-strategy">
+        <span class="section-label">08 — Rare Earth Minimization Strategy</span>
+        <h2 class="section-title">Designing Without Rare Earth Dependence</h2>
+        <p class="abstract-text">A fundamental design principle is the elimination of rare earth dependencies across all technological components. The global supply chain for rare earth elements presents significant geopolitical risks and price volatility. By selecting technologies that operate without permanent magnets or rare earth catalysts, Blue Gold facilities achieve greater supply chain resilience.</p>
+        <div class="strategy-comparison">
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <span class="strategy-icon">☀️</span>
+                    <span class="strategy-name">Solar Photovoltaics</span>
+                    <span class="strategy-status status-proven">Proven</span>
+                </div>
+                <ul class="strategy-items">
+                    <li>Silicon-based PV cells (no rare earths)</li>
+                    <li>Perovskite tandem cells (lead, no rare earths)</li>
+                    <li>Organic photovoltaic materials</li>
+                    <li>Cadmium telluride options</li>
+                </ul>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <span class="strategy-icon">💨</span>
+                    <span class="strategy-name">Wind Turbines</span>
+                    <span class="strategy-status status-proven">Proven</span>
+                </div>
+                <ul class="strategy-items">
+                    <li>Electrically excited generators</li>
+                    <li>Induction generator designs</li>
+                    <li>No permanent magnet materials</li>
+                    <li>Proven offshore reliability</li>
+                </ul>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <span class="strategy-icon">⚡</span>
+                    <span class="strategy-name">Electrolysis</span>
+                    <span class="strategy-status status-proven">Proven</span>
+                </div>
+                <ul class="strategy-items">
+                    <li>Alkaline electrolyzers (nickel catalysts)</li>
+                    <li>AEM systems</li>
+                    <li>No precious metal catalysts</li>
+                    <li>Mature industrial technology</li>
+                </ul>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-header">
+                    <span class="strategy-icon">🔋</span>
+                    <span class="strategy-name">Energy Storage</span>
+                    <span class="strategy-status status-emerging">Emerging</span>
+                </div>
+                <ul class="strategy-items">
+                    <li>Sodium-ion batteries (abundant sodium)</li>
+                    <li>Flow batteries (vanadium, iron)</li>
+                    <li>Compressed air storage</li>
+                    <li>Green hydrogen carrier</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Strategic Advantages:</strong> Electrically excited generators avoid neodymium price volatility. Alkaline electrolyzers benefit from decades of manufacturing experience. This positions Blue Gold facilities to scale rapidly without competing for limited rare earth resources.</p>
+        </div>
+    </section>
+
+    <!-- 09 Environmental Considerations -->
+    <section class="section" id="environmental-considerations">
+        <span class="section-label">09 — Environmental Considerations</span>
+        <h2 class="section-title">Balancing Benefits and Impacts</h2>
+        <p class="abstract-text">Blue Gold infrastructure delivers substantial positive environmental impacts through displaced fossil fuel consumption, reduced carbon emissions, and enhanced freshwater availability. However, responsible deployment requires careful assessment of potential negative impacts and implementation of effective mitigation strategies.</p>
+        <div class="impact-assessment">
+            <div class="impact-column">
+                <h3 class="impact-column-title">Positive Environmental Impacts</h3>
+                <div class="impact-item">
+                    <h4>Carbon Emission Reduction</h4>
+                    <p>Each 1000 MW facility displaces approximately 1.5 million tonnes of CO₂ annually. Over 30 years, this represents 45 million tonnes of avoided emissions.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Renewable Energy Integration</h4>
+                    <p>Blue Gold facilities provide grid services enabling higher renewable penetration, reducing curtailment across regional electricity systems.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Freshwater Security</h4>
+                    <p>Desalinated water output reduces freshwater extraction from stressed aquifers, supporting ecosystem restoration.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Avoided Air Pollution</h4>
+                    <p>Displacement of fossil fuel combustion eliminates sulfur oxides, nitrogen oxides, and particulate matter.</p>
+                </div>
+            </div>
+            <div class="impact-column">
+                <h3 class="impact-column-title">Potential Risks & Mitigations</h3>
+                <div class="impact-item">
+                    <h4>Brine Discharge Impact</h4>
+                    <p>Mitigation strategies include:</p>
+                    <ul class="mitigation-list">
+                        <li>Deep-sea dispersion diffusers</li>
+                        <li>Brine dilution with cooling water</li>
+                        <li>Mineral extraction before discharge</li>
+                        <li>Zero-liquid discharge systems</li>
+                    </ul>
+                </div>
+                <div class="impact-item">
+                    <h4>Marine Ecosystem Stress</h4>
+                    <p>Mitigation includes:</p>
+                    <ul class="mitigation-list">
+                        <li>Fine mesh screening systems</li>
+                        <li>Velocity reduction at intake</li>
+                        <li>Location selection away from habitats</li>
+                        <li>Environmental monitoring programs</li>
+                    </ul>
+                </div>
+                <div class="impact-item">
+                    <h4>Land Use Footprint</h4>
+                    <p>Mitigation includes:</p>
+                    <ul class="mitigation-list">
+                        <li>Floating solar on water bodies</li>
+                        <li>Offshore wind development</li>
+                        <li>Co-location with industrial areas</li>
+                        <li>Dual-use agricultural solar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 Global Deployment -->
+    <section class="section" id="global-deployment">
+        <span class="section-label">10 — Global Deployment Vision</span>
+        <h2 class="section-title">Planetary-Scale Implementation</h2>
+        <p class="abstract-text">The Blue Gold vision contemplates deployment across strategic coastal regions worldwide, with priority given to areas combining high renewable energy potential, water scarcity challenges, population density, and strategic importance for hydrogen production and export.</p>
+        <div class="deployment-list">
+            <div class="region-card">
+                <h3 class="region-name">Middle East & North Africa</h3>
+                <p class="region-details">Exceptional solar resources, existing port infrastructure, and acute water scarcity make this region ideal for early deployment. Countries like Saudi Arabia, UAE, Qatar, and Egypt can leverage Blue Gold to diversify economies beyond oil.</p>
+                <span class="region-priority priority-high">High Priority</span>
+            </div>
+            <div class="region-card">
+                <h3 class="region-name">Sub-Saharan Africa</h3>
+                <p class="region-details">West African coast from Senegal to Namibia offers excellent solar and wind resources combined with rapidly growing energy demand. Blue Gold facilities can support economic development while addressing water scarcity.</p>
+                <span class="region-priority priority-high">High Priority</span>
+            </div>
+            <div class="region-card">
+                <h3 class="region-name">South Asia</h3>
+                <p class="region-details">India, Pakistan, Bangladesh, and Sri Lanka face severe freshwater challenges alongside growing energy needs. Coastal deployment along the Arabian Sea and Bay of Bengal can address water security.</p>
+                <span class="region-priority priority-high">High Priority</span>
+            </div>
+            <div class="region-card">
+                <h3 class="region-name">Southeast Asia</h3>
+                <p class="region-details">Indonesia, Vietnam, Thailand, and the Philippines combine significant coastal populations with strong renewable potential. Blue Gold supports economic growth while addressing climate vulnerability.</p>
+                <span class="region-priority priority-medium">Medium Priority</span>
+            </div>
+            <div class="region-card">
+                <h3 class="region-name">Mediterranean Basin</h3>
+                <p class="region-details">Southern Europe and North Africa offer excellent conditions for integrated solar and wind generation. Cross-border hydrogen trade and water sharing agreements benefit the region.</p>
+                <span class="region-priority priority-medium">Medium Priority</span>
+            </div>
+            <div class="region-card">
+                <h3 class="region-name">South America</h3>
+                <p class="region-details">Coastal regions of Brazil, Chile, Peru, and Argentina present opportunities for integrated hydrogen production. Chile's exceptional solar resources make it particularly attractive for export-oriented production.</p>
+                <span class="region-priority priority-medium">Medium Priority</span>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Implementation Phasing:</strong> Phase 1 (2025-2035) focuses on demonstration projects. Phase 2 (2035-2050) scales deployment based on proven economics. Phase 3 (2050+) achieves full global network coverage.</p>
+        </div>
+    </section>
+
+    <!-- 11 Economics -->
+    <section class="section" id="economics">
+        <span class="section-label">11 — Economic and Engineering Feasibility</span>
+        <h2 class="section-title">Conceptual Cost Framework</h2>
+        <p class="abstract-text">The economic viability of Blue Gold infrastructure depends on the capitalized cost of multi-output facilities balanced against diversified revenue streams. The conceptual framework provides indicative cost structures based on current technology economics and projected learning curves.</p>
+        <div class="cost-breakdown">
+            <div class="cost-card">
+                <h3 class="cost-category">Renewable Infrastructure</h3>
+                <ul class="cost-items">
+                    <li class="cost-item"><span class="cost-item-name">Solar PV Systems</span><span class="cost-item-value">35-40%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Wind Turbines</span><span class="cost-item-value">25-30%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Grid Infrastructure</span><span class="cost-item-value">10-15%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Energy Storage</span><span class="cost-item-value">10-15%</span></li>
+                </ul>
+            </div>
+            <div class="cost-card">
+                <h3 class="cost-category">Production Infrastructure</h3>
+                <ul class="cost-items">
+                    <li class="cost-item"><span class="cost-item-name">Electrolyzers</span><span class="cost-item-value">25-30%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Desalination Plant</span><span class="cost-item-value">15-20%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Hydrogen Storage</span><span class="cost-item-value">10-15%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Water Treatment</span><span class="cost-item-value">5-10%</span></li>
+                </ul>
+            </div>
+            <div class="cost-card">
+                <h3 class="cost-category">Balance of Plant</h3>
+                <ul class="cost-items">
+                    <li class="cost-item"><span class="cost-item-name">Marine Works</span><span class="cost-item-value">20-25%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Buildings & Civil</span><span class="cost-item-value">15-20%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Control Systems</span><span class="cost-item-value">10-15%</span></li>
+                    <li class="cost-item"><span class="cost-item-name">Miscellaneous</span><span class="cost-item-value">10-15%</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="economics-flow">
+            <h3 class="flow-title">Multi-Output Value Model</h3>
+            <div class="revenue-streams">
+                <div class="revenue-item"><div class="revenue-icon">⚡</div><div class="revenue-label">Hydrogen</div></div>
+                <div class="revenue-item"><div class="revenue-icon">+</div></div>
+                <div class="revenue-item"><div class="revenue-icon">💧</div><div class="revenue-label">Water</div></div>
+                <div class="revenue-item"><div class="revenue-icon">+</div></div>
+                <div class="revenue-item"><div class="revenue-icon">🫧</div><div class="revenue-label">Oxygen</div></div>
+                <div class="revenue-item"><div class="revenue-icon">+</div></div>
+                <div class="revenue-item"><div class="revenue-icon">🧂</div><div class="revenue-label">Salts</div></div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p><strong>Economic Resilience:</strong> The multi-output approach provides essential economic resilience. When hydrogen prices are low, water sales maintain facility viability. This flexibility reduces investment risk compared to single-output projects.</p>
+        </div>
+    </section>
+
+    <!-- 12 Future Technology -->
+    <section class="section" id="future-tech">
+        <span class="section-label">12 — Future Technology Integration</span>
+        <h2 class="section-title">Emerging Technologies and Scalability</h2>
+        <p class="abstract-text">The Blue Gold conceptual framework incorporates emerging technologies that will enhance performance, reduce costs, and enable new applications. The modular architecture allows for technology upgrades throughout the facility lifetime.</p>
+        <div class="tech-timeline">
+            <div class="tech-card">
+                <div class="tech-era">Near-Term (2025-2035)</div>
+                <h3 class="tech-title">Sodium-Ion Batteries</h3>
+                <p class="tech-description">Next-generation stationary storage using abundant sodium instead of lithium. Provides grid services at lower cost as the technology scales.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-era">Medium-Term (2030-2040)</div>
+                <h3 class="tech-title">Hydrogen Fuel Cells</h3>
+                <p class="tech-description">Advanced fuel cells with higher efficiency enable on-site power generation from stored hydrogen, ensuring 24/7 renewable delivery.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-era">Medium-Term (2030-2040)</div>
+                <h3 class="tech-title">Hydrogen Pipelines</h3>
+                <p class="tech-description">Dedicated hydrogen transmission infrastructure enables efficient distribution from production to demand centers via regional backbone systems.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-era">Long-Term (2040-2050+)</div>
+                <h3 class="tech-title">Ammonia Conversion</h3>
+                <p class="tech-description">On-site ammonia synthesis enables efficient hydrogen export via existing ammonia shipping infrastructure, expanding market options.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-era">Long-Term (2040-2050+)</div>
+                <h3 class="tech-title">Floating Hydrogen Hubs</h3>
+                <p class="tech-description">Offshore hydrogen production and storage platforms enable deep-water deployment, serving maritime hydrogen markets.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-era">Continuous</div>
+                <h3 class="tech-title">Advanced Electrolysis</h3>
+                <p class="tech-description">Progressively improved electrolyzer efficiency and capital cost through materials research and manufacturing scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13 Conclusion -->
+    <section class="section" id="conclusion">
+        <span class="section-label">13 — Conclusion</span>
+        <h2 class="section-title">A Vision for the Future</h2>
+        <div class="conclusion-box">
+            <p class="conclusion-text"><strong>Water is the foundation of future energy storage.</strong> The Blue Gold conceptual framework demonstrates that seawater—abundant and universally available—can serve as the raw material for a sustainable energy civilization.</p>
+            <p class="conclusion-text"><strong>Hydrogen is the backbone of renewable civilization.</strong> As the energy carrier that can store renewable electricity for any duration, move it across any distance, and convert it to any form of useful energy, hydrogen provides the missing link in sustainable energy systems.</p>
+            <p class="conclusion-text"><strong>Freshwater is a stabilizing resource for humanity.</strong> For billions of people facing water scarcity, coastal desalination powered by renewable energy offers a path to reliable water supply independent of rainfall or river systems.</p>
+            <p class="conclusion-text">The Blue Gold vision is technically grounded in proven technologies—solar, wind, electrolysis, desalination—that have already achieved commercial viability. This is not a speculative vision but a practical framework for the next phase of sustainable infrastructure development.</p>
+            <p class="conclusion-text">The transition from fossil-based to renewable-hydrogen civilization requires bold infrastructure investments, and coastal integrated facilities represent a compelling approach. The ocean has sustained humanity for millennia; now, through Blue Gold, it can power our sustainable future.</p>
+        </div>
+    </section>
+
+    <!-- 14 References -->
+    <section class="section" id="references">
+        <span class="section-label">14 — References</span>
+        <h2 class="section-title">Selected Bibliography</h2>
+        <ol class="references-list">
+            <li class="reference-item"><span class="reference-author">IPCC.</span> <span class="reference-title">Climate Change 2023: Synthesis Report.</span> Intergovernmental Panel on Climate Change, 2023.</li>
+            <li class="reference-item"><span class="reference-author">IEA.</span> <span class="reference-title">Global Hydrogen Review 2023.</span> International Energy Agency, Paris, 2023.</li>
+            <li class="reference-item"><span class="reference-author">Hydrogen Council.</span> <span class="reference-title">Hydrogen Insights 2023.</span> Hydrogen Council, November 2023.</li>
+            <li class="reference-item"><span class="reference-author">IRENA.</span> <span class="reference-title">Green Hydrogen for Industry: A Policy Guide for Policy Makers.</span> International Renewable Energy Agency, Abu Dhabi, 2023.</li>
+            <li class="reference-item"><span class="reference-author">UNESCO.</span> <span class="reference-title">World Water Development Report 2023.</span> United Nations Educational, Scientific and Cultural Organization, Paris, 2023.</li>
+            <li class="reference-item"><span class="reference-author">BloombergNEF.</span> <span class="reference-title">Hydrogen Economy Outlook 2023.</span> Bloomberg New Energy Finance, 2023.</li>
+            <li class="reference-item"><span class="reference-author">DNV.</span> <span class="reference-title">Energy Transition Outlook 2023.</span> DNV GL, 2023.</li>
+        </ol>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <h2 class="footer-title">BLUE GOLD</h2>
+        <p class="footer-text">A Global Coastal Infrastructure for Green Hydrogen, Freshwater Production, and Renewable Energy Storage</p>
+        <p class="footer-text" style="margin-top: 0.5rem;">© 2024 Technical Concept Paper. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.abstract-content, .output-card, .estimates, .highlight-box, .energy-card, .impact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
